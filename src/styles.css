@@ -1,0 +1,21 @@
+header{
+  width: 100%;
+  height: 140px;
+  background-image: url(assets/imagenes/gestion_personas.jpg);
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+
+}
+nav{
+  width: 100%;
+}
+section{
+  width: 100%;
+  min-height: 400px;
+
+}
+footer{
+  width: 100%;
+  height: 140px;
+}
