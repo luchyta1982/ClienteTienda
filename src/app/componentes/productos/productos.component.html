@@ -1,0 +1,60 @@
+<div class="w-75" style="margin: 0 auto">
+  <h3 class="text-center">GESTIONAR PRODUCTOS</h3>
+  <a href="/producto">
+
+    <button type="button" class="btn btn-success mb-4">Agregar</button>
+  </a>
+  <table id="tblProductos" class="table table-bordered table-striped">
+    <thead class="bg-dark text-white fw-bold">
+      <tr class="text-center">
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Categoria</th>
+        <th>Imagen</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="fila" *ngFor="let producto of listaProductos">
+        <td>{{producto.proCodigo}}</td>
+        <td>{{producto.proNombre}} </td>
+        <td>{{producto.proPrecio | currency:"COP"}}</td>
+        <ng-container *ngFor="let categoria of listaCategorias">
+          <td *ngIf="categoria.id == producto.proCategoria">{{categoria.catNombre}}</td>
+        </ng-container>
+        <td class="text-center"><img width="50" src="{{producto.proFoto}}"></td>
+        <td class="text-center">
+          <a href="/editarProducto/{{producto.id}}"><i
+              class="fa fa-edit text-sucess"></i></a>
+          <i (click)="abrirModalEliminar(producto.id)"
+            class="fa fa-trash text-danger"></i>
+        </td>
+      </tr>
+    </tbody>
+    <div class="modal" id="modalEliminar" [ngStyle]="{'display':display}">
+      <div class="modal-dialog">
+        <!--Modal Encabezado-->
+        <div class="modal-header bg-dark text-white">
+          <h4 class="modal-title">Eliminar producto</h4>
+          <button type="button" class="text-white close" data-dismiss="modal"
+            (click)="cerrarModal()">&times;</button>
+        </div>
+        <!--Modal Contenido-->
+        <div class="modal-body">
+          ¿esta seguro de eliminar el producto?
+        </div>
+        <!--Modal pie de pagina -->
+        <div class="modal-footer">
+          <a href id="rutaEliminar">
+            <button type="button" class="btn btn-success" id="btnEliminar"
+              (click)="eliminarProducto()">SI</button>
+          </a>
+          <button type="button" class="btn btn-danger" id=" btnCancelarModal"
+            (click)="cerrarModal()"
+            data-dismiss="modal">NO</button>
+        </div>
+      </div>
+    </div>
+  </table>
+</div>

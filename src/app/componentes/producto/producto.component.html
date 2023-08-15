@@ -1,0 +1,47 @@
+<div class="w-50 mt-3" style="margin:0 auto">
+  <div>
+    <h3 class="text-center bg-danger text-white">REGISTRAR PRODUCTO</h3>
+  </div>
+  <div>
+    <form [formGroup]="frmProducto" (ngSubmit)="agregarProducto(frmProducto.value)"
+    enctype="multipart/form-data" class="w-50" style="margin: 0 auto" class="was-validated">
+      <div class="form-floating  mb-3">
+        <input type="number" formControlName="txtCodigo" id="txtCodigo"
+        class="form-control" value="" required>
+        <label for="txtCodigo">Codigo:</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" formControlName="txtNombre" id="txtNombre"
+        class="form-control" value="" required>
+        <label for="txtNombre">Nombre</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" formControlName="txtPrecio" id="txtPrecio"
+        class="form-control" value="" required>
+        <label for="txtPrecio">Precio</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select formControlName="cbCategoria" id="cbCategoria" class="form-select"required>
+          <option value="">Seleccione</option>
+          <option [value]="categoria.id" *ngFor="let categoria of listaCategorias">
+            {{categoria.catNombre}}</option>
+        </select>
+        <label for="cbCategoria">Categoria</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="file" formControlName="fileFoto" id="fileFoto" class="form-control" (change)="onFileSelect($event)">
+        <label for="fileFoto">Foto(jpg):</label>
+      </div>
+      <div class="text-center">
+        <img id="imagenProducto" [src]="rutaFoto" alt="" width="100" height="100">
+      </div>
+      <div>
+        <button class="btn btn-success mr-5">Registrar</button>
+        <a href="/productos">
+          <button type="button" class="btn btn-warning ml-2">Cancelar</button>
+        </a>
+      </div>
+    </form>
+  </div>
+  <div class="text-center">{{mensaje}}</div>
+</div>
